@@ -21,6 +21,8 @@
 3. 新仓库 → **Actions** 页，若提示被禁用就点 *I understand my workflows, go ahead and enable them*；
    然后 **mirror → Run workflow**，`release_limit` 填 `0` 跑一次（只同步源码和 tag，很快），确认没报错。
 
+> 模板仓本身的 Actions 是**故意关掉**的（它没有 `UPSTREAM`，开着只会每 30 分钟报一次错）。用模板建出来的新仓库是**独立设置**，Actions 默认开启，跟模板仓无关。如果进去看到被禁用，按上面第 3 步点一下启用即可。
+
 之后每 30 分钟自动跑，不用管了。
 
 最低用法下**没有的东西**：git tag 大概率推不上去（权限原因，见 [已知限制](#已知限制)），Release 的 tag 会建在 `main` 最新提交上（tag 名对、指向的提交不对）。**这两点都不影响更新器工作**——它比的是 Release 的 tag 名和版本号。
